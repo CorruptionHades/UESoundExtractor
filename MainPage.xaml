@@ -1,0 +1,138 @@
+<Page x:Class="UESoundExtractor.MainPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:UESoundExtractor"
+      mc:Ignorable="d"
+      Title="LoadingPage" Height="800" Width="1200">
+    <Grid>
+        <!-- Loading Indicator -->
+        <ProgressBar x:Name="LoadingProgressBar" 
+                     IsIndeterminate="True" 
+                     HorizontalAlignment="Center" 
+                     VerticalAlignment="Center" 
+                     Width="200" Height="20" />
+
+        <!-- Main Content -->
+        <DockPanel x:Name="MainContent" Visibility="Collapsed" LastChildFill="True">
+            
+            <!-- Add this inside the Grid for the Folders Tab -->
+            <!-- Update the Grid for the Folders Tab in `LoadingPage.xaml` -->
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+    
+                <Button Content="Add Event Folder" Margin="5" Click="AddEventFolderButton_Click"/>
+    
+                <ListBox x:Name="EventFoldersListBox" Grid.Row="1" Margin="5" SelectionMode="Single"/>
+    
+                <Button Content="Delete Selected Folder" Grid.Row="2" Margin="5" Click="DeleteEventFolderButton_Click"/>
+                
+                <Button Content="Open export folder" Grid.Row="2" Margin="5" Click="ExportFolderButtonClick"/>
+            </Grid>
+            
+            <!-- Left Panel with Tabs -->
+            <Grid DockPanel.Dock="Left" Width="400">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <!-- Tab Control -->
+                <TabControl Grid.Row="0" Grid.RowSpan="2">
+                    <!-- Folders Tab -->
+                    <TabItem Header="Folders">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            
+                            <TextBox x:Name="FolderSearchBox" 
+                                     Text="Search folders..." 
+                                     Margin="5"
+                                     TextChanged="SearchTextBox_TextChanged"/>
+                            
+                            <TreeView x:Name="FoldersTreeView" 
+                                      Grid.Row="1"
+                                      Margin="5"
+                                      TreeViewItem.Selected="FoldersTreeView_Selected"
+                                      VirtualizingStackPanel.IsVirtualizing="True"
+                                      VirtualizingStackPanel.VirtualizationMode="Recycling">
+                                <TreeView.ItemTemplate>
+                                    <HierarchicalDataTemplate ItemsSource="{Binding Children}">
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="{Binding Name}" />
+                                            <TextBlock Text="{Binding FileCount, StringFormat=' ({0} files)'}" 
+                                                       Margin="5,0,0,0" 
+                                                       Foreground="Gray"/>
+                                        </StackPanel>
+                                    </HierarchicalDataTemplate>
+                                </TreeView.ItemTemplate>
+                            </TreeView>
+                        </Grid>
+                    </TabItem>
+                    
+                    <!-- Packages Tab -->
+                    <TabItem Header="Packages">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            
+                            <TextBox x:Name="PackageSearchBox" 
+                                     Text="Search packages..." 
+                                     Margin="5"
+                                     TextChanged="PackageSearchBox_TextChanged"/>
+                            
+                            <ListView x:Name="PackagesListView" 
+                                     Grid.Row="1"
+                                     Margin="5"
+                                     SelectionChanged="PackagesListView_SelectionChanged">
+                                <ListView.View>
+                                    <GridView>
+                                        <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}"/>
+                                    </GridView>
+                                </ListView.View>
+                            </ListView>
+                        </Grid>
+                    </TabItem>
+                </TabControl>
+            </Grid>
+
+            <!-- Right Panel for Package Details -->
+            <Grid DockPanel.Dock="Right" Margin="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Text="Package Details" 
+                           FontSize="18" 
+                           FontWeight="Bold" 
+                           Margin="0,0,0,10"/>
+
+                <Grid x:Name="PackageDetailsPanel" 
+                      Grid.Row="1" 
+                      Visibility="Collapsed">
+                    <StackPanel>
+                        <TextBlock Text="{Binding SelectedPackage.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                   FontSize="16" 
+                                   FontWeight="SemiBold"/>
+                        <TextBlock Text="{Binding SelectedPackage.Path}" 
+                                   Margin="0,5"/>
+                        <TextBlock Text="{Binding SelectedPackage.FileCount, StringFormat='Number of files: {0}'}" 
+                                   Margin="0,5"/>
+                        <TextBox x:Name="PDPNameMap" Background="Transparent" BorderThickness="0" IsReadOnly="True" TextWrapping="Wrap"></TextBox>
+                        <Button x:Name="PDPExtractBtn" Content="Extract" Click="ExtractButton_Click" Margin="0,5" Visibility="Collapsed"/>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+        </DockPanel>
+    </Grid>
+</Page>
