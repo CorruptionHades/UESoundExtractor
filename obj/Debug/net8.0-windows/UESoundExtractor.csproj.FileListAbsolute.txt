@@ -46,7 +46,8 @@ H:\C#\UESoundExtractor\bin\Debug\net8.0-windows\runtimes\win-x64\native\blake3_d
 H:\C#\UESoundExtractor\bin\Debug\net8.0-windows\runtimes\win-x86\native\blake3_dotnet.dll
 H:\C#\UESoundExtractor\obj\Debug\net8.0-windows\UESoundExtractor.csproj.AssemblyReference.cache
 H:\C#\UESoundExtractor\obj\Debug\net8.0-windows\UESoundE.F8FBF95B.Up2Date
-H:\C#\UESoundExtractor\obj\Debug\net8.0-windows\LoadingPage.g.cs
-H:\C#\UESoundExtractor\obj\Debug\net8.0-windows\LoadingPage.baml
 H:\C#\UESoundExtractor\obj\Debug\net8.0-windows\AddEventFolderDialog.baml
 H:\C#\UESoundExtractor\obj\Debug\net8.0-windows\AddEventFolderDialog.g.cs
+H:\C#\UESoundExtractor\obj\Debug\net8.0-windows\MainPage.g.cs
+H:\C#\UESoundExtractor\obj\Debug\net8.0-windows\MainPage.baml
+H:\C#\UESoundExtractor\obj\Debug\net8.0-windows\UESoundExtractor.sourcelink.json

@@ -4,6 +4,8 @@
              xmlns:local="clr-namespace:UESoundExtractor"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <Style TargetType="Control">
+            <Setter Property="FontSize" Value="136"/>
+        </Style>
     </Application.Resources>
 </Application>

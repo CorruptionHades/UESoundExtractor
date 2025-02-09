@@ -96,7 +96,7 @@
                                      SelectionChanged="PackagesListView_SelectionChanged">
                                 <ListView.View>
                                     <GridView>
-                                        <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}"/>
+                                        <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" Width="500"/>
                                     </GridView>
                                 </ListView.View>
                             </ListView>
@@ -128,7 +128,11 @@
                                    Margin="0,5"/>
                         <TextBlock Text="{Binding SelectedPackage.FileCount, StringFormat='Number of files: {0}'}" 
                                    Margin="0,5"/>
-                        <TextBox x:Name="PDPNameMap" Background="Transparent" BorderThickness="0" IsReadOnly="True" TextWrapping="Wrap"></TextBox>
+                        
+                        <ScrollViewer>
+                            <TextBox x:Name="PDPNameMap" Background="Transparent" BorderThickness="0" IsReadOnly="True" TextWrapping="Wrap"></TextBox>
+                        </ScrollViewer>
+                        
                         <Button x:Name="PDPExtractBtn" Content="Extract" Click="ExtractButton_Click" Margin="0,5" Visibility="Collapsed"/>
                     </StackPanel>
                 </Grid>
