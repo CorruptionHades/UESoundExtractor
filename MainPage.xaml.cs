@@ -464,6 +464,38 @@ namespace UESoundExtractor
             // open explorer
             System.Diagnostics.Process.Start("explorer.exe", Settings.settings.OutputFolder);
         }
+
+        private void DirectExtract_Click(object sender, RoutedEventArgs e) {
+            string path = DirectExtractTB.Text;
+            string customName = DirectExtractCustomName.Text;
+            DirectExtractProgress.Text = "Extracting...";
+            if (path.EndsWith(".bnk")) {
+            }
+            else {
+                DirectExtractProgress.Text = "Assuming .wem file...";
+                Task.Run(() =>
+                {
+                    int pathLength = path.Split("/").Length;
+                    
+                    // if no path add Shootergame/Content/WwiseAudio/Media
+                    // 406925269
+                    if (pathLength == 1) {
+                        path = "Shootergame/Content/WwiseAudio/Media/" + path;
+                    }
+                    
+                    // if no extension add .wem
+                    if (!path.EndsWith(".wem")) {
+                        path += ".wem";
+                    }
+                    
+                    string wavPath = WemExtractor.Extract(path, customName.Length == 0 ? path.Split("/").Last() : customName);
+                    Dispatcher.Invoke(() =>
+                    {
+                        DirectExtractProgress.Text = "Extracted to " + wavPath;
+                    });
+                });
+            }
+        }
     }
 
     public class FolderItem

@@ -36,7 +36,7 @@
             </Grid>
             
             <!-- Left Panel with Tabs -->
-            <Grid DockPanel.Dock="Left" Width="400">
+            <Grid DockPanel.Dock="Left" Width="500">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"/>
@@ -102,6 +102,21 @@
                             </ListView>
                         </Grid>
                     </TabItem>
+                    
+                    <TabItem Header="Direct Extract">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <TextBox Grid.Row="0" x:Name="DirectExtractTB" Text="enter the path of the package" Margin="5"/>
+                            <TextBox Grid.Row="1" x:Name="DirectExtractCustomName" Text="Custom extract name" Margin="5"/>
+                            <Button Grid.Row="2" Content="Extract" Click="DirectExtract_Click" Margin="5"/>
+                            <TextBlock Grid.Row="3" x:Name="DirectExtractProgress"/>
+                        </Grid>
+                    </TabItem>
                 </TabControl>
             </Grid>
 
@@ -121,9 +136,13 @@
                       Grid.Row="1" 
                       Visibility="Collapsed">
                     <StackPanel>
-                        <TextBlock Text="{Binding SelectedPackage.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                                   FontSize="16" 
-                                   FontWeight="SemiBold"/>
+                        <TextBox Text="{Binding SelectedPackage.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                 FontSize="16" 
+                                 FontWeight="SemiBold" 
+                                 Background="Transparent" 
+                                 BorderThickness="0"
+                                 IsReadOnly="True" 
+                                 TextWrapping="Wrap"></TextBox>
                         <TextBlock Text="{Binding SelectedPackage.Path}" 
                                    Margin="0,5"/>
                         <TextBlock Text="{Binding SelectedPackage.FileCount, StringFormat='Number of files: {0}'}" 

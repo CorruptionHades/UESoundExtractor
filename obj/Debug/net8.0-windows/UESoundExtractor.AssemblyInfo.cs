@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("UESoundExtractor")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a9ffad0e3c7e99d106cc0c6ddd27ea23f31c27cc")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+edb5706d3c612c4f008b9b59c49597b405db11a9")]
 [assembly: System.Reflection.AssemblyProductAttribute("UESoundExtractor")]
 [assembly: System.Reflection.AssemblyTitleAttribute("UESoundExtractor")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
